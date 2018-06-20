@@ -41,9 +41,7 @@ tsla_tweet.head()
 ```
 
 
-
-
-<div>
+<!-- <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -56,7 +54,10 @@ tsla_tweet.head()
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -139,7 +140,7 @@ elonmusk_tweet.head()
 ```
 
 
-
+<!-- 
 
 <div>
 <style scoped>
@@ -154,7 +155,9 @@ elonmusk_tweet.head()
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -237,7 +240,7 @@ tsla_stock.head()
 ```
 
 
-
+<!-- 
 
 <div>
 <style scoped>
@@ -252,7 +255,9 @@ tsla_stock.head()
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -347,7 +352,7 @@ tsla_tweet.head()
 ```
 
 
-
+<!-- 
 
 <div>
 <style scoped>
@@ -362,7 +367,9 @@ tsla_tweet.head()
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -460,7 +467,7 @@ elonmusk_tweet.head()
 
 
 
-
+<!-- 
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -474,7 +481,9 @@ elonmusk_tweet.head()
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -573,7 +582,7 @@ tsla_sentiment.head()
 
 
 
-<div>
+<!-- <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -586,7 +595,9 @@ tsla_sentiment.head()
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -654,7 +665,7 @@ elonmusk_sentiment.head()
 
 
 
-
+<!-- 
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -668,7 +679,9 @@ elonmusk_sentiment.head()
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -832,7 +845,7 @@ tsla_summary_df
 ```
 
 
-
+<!-- 
 
 <div>
 <style scoped>
@@ -847,7 +860,9 @@ tsla_summary_df
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -931,7 +946,7 @@ elonmusk_summary
 
 
 
-
+<!-- 
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -945,7 +960,9 @@ elonmusk_summary
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1021,7 +1038,7 @@ elonmusk_summary_df
 
 
 
-
+<!-- 
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1035,7 +1052,9 @@ elonmusk_summary_df
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1110,7 +1129,7 @@ tsla_final_df.head()
 ```
 
 
-
+<!-- 
 
 <div>
 <style scoped>
@@ -1125,7 +1144,10 @@ tsla_final_df.head()
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1192,7 +1214,7 @@ elonmusk_final_df.head()
 ```
 
 
-
+<!-- 
 
 <div>
 <style scoped>
@@ -1207,7 +1229,9 @@ elonmusk_final_df.head()
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1274,7 +1298,7 @@ tweet_sentiment_merged.head()
 ```
 
 
-
+<!-- 
 
 <div>
 <style scoped>
@@ -1289,7 +1313,9 @@ tweet_sentiment_merged.head()
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1381,7 +1407,7 @@ tweet_sentiment_final
 
 
 
-
+<!-- 
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1395,7 +1421,9 @@ tweet_sentiment_final
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1517,7 +1545,7 @@ tsla_stock.head()
 
 
 
-
+<!-- 
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1531,7 +1559,10 @@ tsla_stock.head()
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1653,7 +1684,7 @@ tweet_stock_merged
 
 
 
-
+<!-- 
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1667,7 +1698,9 @@ tweet_stock_merged
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1798,7 +1831,7 @@ tsla_stock.head()
 ```
 
 
-
+<!-- 
 
 <div>
 <style scoped>
@@ -1813,7 +1846,10 @@ tsla_stock.head()
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
