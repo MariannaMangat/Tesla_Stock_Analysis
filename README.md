@@ -1,47 +1,154 @@
 
-### TSLA  & Elon Musk Sentiment
+# TESLA STOCK ANALYSIS
 
 
-- - -
+Discover if there is a relationship amongst stock price, price to sales ratio, twitter sentiment and financial statements for Tesla.
+
+
+## Tesla Data sources
+
+
+* SEC Filings
+
+
+* Twitter
+
+
+*  Yahoo Historical Stock Data
+
+
+*  Zacks.com
+
+## Lessons Learned
+
+
+1) Historical twitter data is not easily accessible without a paid license
+
+
+2) GMT to PST date conversion
+
+
+3) Merging multiple data sources
+
+
+4) Plotting with multiple y-axis
+
+
+5) Working with various date formats
+
+
+6) Understand your underlying data
+
+
+
+
+
+### >>> Financials Section >>>
+
+### Pipeline - Begin
 
 
 ```python
-# Dependencies
-import matplotlib.pyplot as plt
-import numpy as np
+# dependencies
 import pandas as pd
+import seaborn as sns
+import numpy as np
+import matplotlib.pyplot as plt
 
 from datetime import datetime
 from datetime import timedelta
 
-# Import and Initialize Sentiment Analyzer
+# import and initialize Sentiment Analyzer
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 analyzer = SentimentIntensityAnalyzer()
 ```
 
 
 ```python
-# Read Data from CSV files
-tsla_tweet = pd.read_csv("supportfiles/tslatweets.csv")
-elonmusk_tweet = pd.read_csv("supportfiles/ElonMusktweets.csv")
-tsla_stock = pd.read_csv("supportfiles/TSLA_stock.csv")
+# financial data resources
+financials = "./Resources/Tesla Financials/Testla Operations Financials.xlsx"
+stock_price = "./Resources/Tesla Stock Price/TSLAstock.xlsx"
+ps_ratio = "./Resources/Tesla Stock Price/TSLApsratio.xlsx"
+twitter = "./Resources/Tesla Twitter/twitter tweets.xlsx"
+
+# twitter data resources
+tsla_tweet = pd.read_csv("Resources/tslatweets.csv")
+elonmusk_tweet = pd.read_csv("Resources/ElonMusktweets.csv")
+tsla_stock = pd.read_csv("Resources/TSLA_stock.csv")
 ```
 
 
 ```python
-#Convert Date column to Pandas Date Time format
-tsla_tweet["Date"] = pd.to_datetime(tsla_tweet["Date"])
-elonmusk_tweet["Date"] = pd.to_datetime(elonmusk_tweet["Date"])
-tsla_stock["Date"] = pd.to_datetime(tsla_stock["Date"])
+# set df_variable: financial statement
+financials_excel = pd.read_excel(financials)
+financials_df = financials_excel[["date","operating_income","cf_from_operations"]]
 ```
 
 
 ```python
-tsla_tweet.head()
+# set df_variabel: stock price
+stock_price_excel = pd.read_excel(stock_price)
+stock_price_df = stock_price_excel[["date","Close","Volume"]]
 ```
 
 
-<!-- <div>
+```python
+# set df_variable: price-to-sales ratio
+ps_ratio_xlsx = pd.read_excel(ps_ratio)
+ps_ratio_df = ps_ratio_xlsx[["date","P/S Ratio"]]
+```
+
+
+```python
+# set df_variable: twitter sentiment
+twitter_csv = pd.read_excel(twitter)
+twitter_df = twitter_csv[["date","TSLA_compound","ElonMusk_compound"]]
+```
+
+
+```python
+# merge: financials and stock price (AS: tesla_df_1)
+tesla_df_1 = pd.merge(financials_df,stock_price_df, how="outer",on="date")
+```
+
+
+```python
+# merge: tesla_df_1 and ps ratio (AS: tesla_df_2)
+tesla_df_2 = pd.merge(tesla_df_1,ps_ratio_df, how="outer",on="date")
+```
+
+
+```python
+# merge: tesla_df_2 and twitter (AS: tesla_df_3)
+tesla_df_3 = pd.merge(tesla_df_2,twitter_df, how="outer",on="date")
+```
+
+
+```python
+# converting column: convert 'date' column to pandas.to_datetime(), THEN adding it as a new column to df
+tesla_df_3["date_converted"] = pd.to_datetime(tesla_df_3["date"])
+```
+
+
+```python
+# converting column: convert 'date' column to pandas.to_numeric(), THEN adding it as a new column to df
+tesla_df_3["date_converted_to_numeric"] = pd.to_numeric(tesla_df_3["date_converted"])
+```
+
+
+```python
+# sort: by date (final wrangling/applying as: tesla_df )
+tesla_df = tesla_df_3.sort_values(by=["date_converted"],ascending = False)
+tesla_df.head()
+
+# use to this code: to audit via excel
+# tesla_df.to_csv("tesla_df.csv",index=False,header=True)
+```
+
+<!-- 
+
+
+<div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -57,6 +164,338 @@ tsla_tweet.head()
 </style> -->
 
 
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>operating_income</th>
+      <th>cf_from_operations</th>
+      <th>Close</th>
+      <th>Volume</th>
+      <th>P/S Ratio</th>
+      <th>TSLA_compound</th>
+      <th>ElonMusk_compound</th>
+      <th>date_converted</th>
+      <th>date_converted_to_numeric</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>623</th>
+      <td>2018-06-19</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>352.550000</td>
+      <td>12537147.0</td>
+      <td>5.125</td>
+      <td>0.078213</td>
+      <td>0.078213</td>
+      <td>2018-06-19</td>
+      <td>1529366400000000000</td>
+    </tr>
+    <tr>
+      <th>622</th>
+      <td>2018-06-18</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>370.829987</td>
+      <td>11985600.0</td>
+      <td>5.030</td>
+      <td>0.108785</td>
+      <td>0.108785</td>
+      <td>2018-06-18</td>
+      <td>1529280000000000000</td>
+    </tr>
+    <tr>
+      <th>625</th>
+      <td>2018-06-17</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.130824</td>
+      <td>0.130824</td>
+      <td>2018-06-17</td>
+      <td>1529193600000000000</td>
+    </tr>
+    <tr>
+      <th>624</th>
+      <td>2018-06-16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.130824</td>
+      <td>0.130824</td>
+      <td>2018-06-16</td>
+      <td>1529107200000000000</td>
+    </tr>
+    <tr>
+      <th>621</th>
+      <td>2018-06-15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>358.170013</td>
+      <td>10848300.0</td>
+      <td>4.899</td>
+      <td>0.108785</td>
+      <td>0.108785</td>
+      <td>2018-06-15</td>
+      <td>1529020800000000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+### Pipeline - End
+
+
+```python
+len(tesla_df["date"])
+```
+
+
+
+
+    626
+
+
+
+
+```python
+tesla_df.dtypes
+```
+
+
+
+
+    date                                 object
+    operating_income                    float64
+    cf_from_operations                  float64
+    Close                               float64
+    Volume                              float64
+    P/S Ratio                           float64
+    TSLA_compound                       float64
+    ElonMusk_compound                   float64
+    date_converted               datetime64[ns]
+    date_converted_to_numeric             int64
+    dtype: object
+
+
+
+### *** Financial Graphs ***
+
+## Reuben's code
+
+
+```python
+# Plot - Operating Income vs Closing Prices
+
+plt.figure(figsize=(900,6))
+
+ax = tesla_df.plot(x="date_converted_to_numeric",
+                   y="Close",
+                   legend=False,
+                   color="Red")
+    
+ax2 = ax.twinx()
+
+tesla_df.plot(x="date_converted_to_numeric",
+              y="operating_income",
+              kind="scatter",
+              marker='x',
+              alpha=1,
+              c="blue",
+              s=100,
+              edgecolor="green",
+              legend=False,
+              figsize=(10,7),
+              ax=ax2)
+
+ax.figure.legend()
+
+plt.title("Income Generated vs Stock Price")
+ax.set_xlabel("Date")
+ax.set_ylabel("Closing Prices ($)")
+ax2.set_ylabel("Income Generated ($)")
+
+plt.savefig("Income Generated vs Stock Prices.png")
+```
+
+
+    <matplotlib.figure.Figure at 0x1cd57089fd0>
+
+
+
+![png](output_20_1.png)
+
+
+
+```python
+# Plot - CASH Generated from Business Operations vs Closing Prices
+
+# Plot - Operating Income vs Closing Prices
+
+plt.figure(figsize=(900,6))
+
+ax = tesla_df.plot(x="date_converted_to_numeric",
+                   y="Close",
+                   legend=False,
+                   color="Red")
+    
+ax2 = ax.twinx()
+
+tesla_df.plot(x="date_converted_to_numeric",
+              y="cf_from_operations",
+              kind="scatter",
+              marker='o',
+              alpha=1,
+              c="none",
+              s=100,
+              edgecolor="green",
+              legend=False,
+              figsize=(10,7),
+              ax=ax2)
+
+ax.figure.legend()
+
+plt.title("Cash Generated vs Stock Price")
+ax.set_xlabel("Date")
+ax.set_ylabel("Closing Prices ($)")
+ax2.set_ylabel("Cash Generated ($)")
+
+plt.savefig("Cash Generated vs Stock Prices.png")
+```
+
+
+    <matplotlib.figure.Figure at 0x1cd574aa160>
+
+
+
+![png](output_21_1.png)
+
+
+## Andy's code
+
+
+```python
+# plot - Stock Price vs PS ratio
+
+andy_df = tesla_df[["date","Close","P/S Ratio"]].dropna(how="any")
+
+ax = andy_df.plot(x="date",
+                  y="Close",
+                  legend=False,
+                  color="red")
+
+ax2 = ax.twinx()
+
+andy_df.plot(x="date",
+             y="P/S Ratio",
+             ax=ax2,
+             legend=False,
+             color="Green",
+             figsize=(10,7))
+
+ax.figure.legend()
+
+plt.title("Stock Price vs Price-To-Sale Ratio")
+ax.set_xlabel("Date")
+ax.set_ylabel("Stock Price ($)")
+ax2.set_ylabel("Price-To-Sale Ratio (%)")
+
+
+plt.savefig("Stock Price vs Price-To_Sale Ratio.png")
+```
+
+
+![png](output_23_0.png)
+
+
+
+```python
+# plot - Operating Income vs PS ratio
+
+plt.figure(figsize=(900,6))
+
+ax = tesla_df.plot(x="date_converted_to_numeric",
+                   y="operating_income",
+                   marker='x',
+                   legend=False,
+                   color="blue",
+                   kind="scatter",
+                   s=100)
+
+ax2 = ax.twinx()
+
+tesla_df.plot(x="date_converted_to_numeric",
+             y="P/S Ratio",
+             ax=ax2,
+             legend=False,
+             color="Green",
+             figsize=(10,7))
+
+# plt.xticks(tesla_df["date_converted_to_numeric"], tesla_df["date"], rotation='vertical')
+
+ax.figure.legend()
+
+plt.title("Income Generated vs Price-To-Sale Ratio")
+ax.set_xlabel("Date")
+ax.set_ylabel("Stock Price")
+ax2.set_ylabel("Price-To-Sale Ratio (%)")
+
+plt.savefig("Operating Income vs Price-To_Sale Ratio.png")
+```
+
+
+    <matplotlib.figure.Figure at 0x1cd57e44208>
+
+
+
+![png](output_24_1.png)
+
+
+### >>> Twitter section >>>
+
+## Carla's code
+
+
+
+
+```python
+#Convert Date column to Pandas Date Time format
+tsla_tweet["Date"] = pd.to_datetime(tsla_tweet["Date"])
+elonmusk_tweet["Date"] = pd.to_datetime(elonmusk_tweet["Date"])
+tsla_stock["Date"] = pd.to_datetime(tsla_stock["Date"])
+```
+
+
+```python
+tsla_tweet.head()
+```
+
+
+
+<!-- 
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style> -->
 
 <table border="1" class="dataframe">
   <thead>
@@ -140,8 +579,8 @@ elonmusk_tweet.head()
 ```
 
 
-<!-- 
 
+<!-- 
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -156,7 +595,6 @@ elonmusk_tweet.head()
         text-align: right;
     }
 </style> -->
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -240,8 +678,8 @@ tsla_stock.head()
 ```
 
 
-<!-- 
 
+<!-- 
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -256,7 +694,6 @@ tsla_stock.head()
         text-align: right;
     }
 </style> -->
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -352,8 +789,8 @@ tsla_tweet.head()
 ```
 
 
-<!-- 
 
+<!-- 
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -581,8 +1018,8 @@ tsla_sentiment.head()
 
 
 
-
-<!-- <div>
+<!-- 
+<div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -750,7 +1187,7 @@ tsla_summary
 
 
 
-<div>
+<!-- <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -763,7 +1200,9 @@ tsla_summary
     .dataframe thead th {
         text-align: right;
     }
-</style>
+</style> -->
+
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -845,8 +1284,8 @@ tsla_summary_df
 ```
 
 
-<!-- 
 
+<!-- 
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -946,8 +1385,8 @@ elonmusk_summary
 
 
 
-<!-- 
-<div>
+
+<!-- <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1037,8 +1476,8 @@ elonmusk_summary_df
 ```
 
 
-
 <!-- 
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1129,8 +1568,8 @@ tsla_final_df.head()
 ```
 
 
-<!-- 
 
+<!-- 
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1145,7 +1584,6 @@ tsla_final_df.head()
         text-align: right;
     }
 </style> -->
-
 
 
 <table border="1" class="dataframe">
@@ -1214,8 +1652,8 @@ elonmusk_final_df.head()
 ```
 
 
-<!-- 
 
+<!-- 
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1298,8 +1736,8 @@ tweet_sentiment_merged.head()
 ```
 
 
-<!-- 
 
+<!-- 
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1560,8 +1998,6 @@ tsla_stock.head()
         text-align: right;
     }
 </style> -->
-
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -1831,8 +2267,8 @@ tsla_stock.head()
 ```
 
 
-<!-- 
 
+<!-- 
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1847,7 +2283,6 @@ tsla_stock.head()
         text-align: right;
     }
 </style> -->
-
 
 
 <table border="1" class="dataframe">
@@ -1926,6 +2361,8 @@ tsla_stock.head()
 
 
 
+### *** Twitter Graphs ***
+
 
 ```python
 #stock chart
@@ -1943,7 +2380,7 @@ plt.xticks(rotation=70)
 
 
 
-![png](output_25_1.png)
+![png](output_50_1.png)
 
 
 
@@ -1965,7 +2402,7 @@ plt.savefig("TSLASentimentchart.png")
 ```
 
 
-![png](output_26_0.png)
+![png](output_51_0.png)
 
 
 
@@ -1986,7 +2423,7 @@ plt.savefig("ElonMuskSentimentchart.png")
 ```
 
 
-![png](output_27_0.png)
+![png](output_52_0.png)
 
 
 
@@ -2007,7 +2444,7 @@ plt.savefig("TSLA_PSRatiochart.png")
 ```
 
 
-![png](output_28_0.png)
+![png](output_53_0.png)
 
 
 
@@ -2028,7 +2465,7 @@ plt.savefig("ElonMusk_PSRatio.png")
 ```
 
 
-![png](output_29_0.png)
+![png](output_54_0.png)
 
 
 
