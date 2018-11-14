@@ -332,7 +332,7 @@ plt.savefig("Income Generated vs Stock Prices.png")
 
 
 
-![png](output_20_1.png)
+![png](Graphs/output_20_1.png)
 
 
 
@@ -377,7 +377,7 @@ plt.savefig("Cash Generated vs Stock Prices.png")
 
 
 
-![png](output_21_1.png)
+![png](Graphs/output_21_1.png)
 
 
 ## Andy's code
@@ -414,7 +414,7 @@ plt.savefig("Stock Price vs Price-To_Sale Ratio.png")
 ```
 
 
-![png](output_23_0.png)
+![png](Graphs/output_23_0.png)
 
 
 
@@ -457,7 +457,7 @@ plt.savefig("Operating Income vs Price-To_Sale Ratio.png")
 
 
 
-![png](output_24_1.png)
+![png](Graphs/output_24_1.png)
 
 
 ### >>> Twitter section >>>
@@ -2380,7 +2380,7 @@ plt.xticks(rotation=70)
 
 
 
-![png](output_50_1.png)
+![png](Graphs/output_50_1.png)
 
 
 
@@ -2402,7 +2402,7 @@ plt.savefig("TSLASentimentchart.png")
 ```
 
 
-![png](output_51_0.png)
+![png](Graphs/output_51_0.png)
 
 
 
@@ -2423,7 +2423,7 @@ plt.savefig("ElonMuskSentimentchart.png")
 ```
 
 
-![png](output_52_0.png)
+![png](Graphs/output_52_0.png)
 
 
 
@@ -2444,7 +2444,7 @@ plt.savefig("TSLA_PSRatiochart.png")
 ```
 
 
-![png](output_53_0.png)
+![png](Graphs/output_53_0.png)
 
 
 
@@ -2465,7 +2465,7 @@ plt.savefig("ElonMusk_PSRatio.png")
 ```
 
 
-![png](output_54_0.png)
+![png](Graphs/output_54_0.png)
 
 
 
