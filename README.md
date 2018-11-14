@@ -2,7 +2,7 @@
 # TESLA STOCK ANALYSIS
 
 
-## This analysis explores a relationship amongst stock price, price to sales ratio, twitter sentiment and financial statements for Tesla. 
+## This analysis explores a relationship amongst stock price, price to sales ratio, twitter sentiment and financial statements for Tesla Stock. 
 
 
 ## Tesla Data sources
