@@ -2376,7 +2376,7 @@ plt.xticks(rotation=70)
 
 
 ```python
-#Good chart
+
 ax = tweet_stock_merged.plot(x="date", y="Close", legend=False, marker="x")
 ax2 = ax.twinx()
 tweet_stock_merged.plot(x="date", y="TSLA_compound", ax=ax2, legend=False, color="r", marker="o", figsize=(10,7))
@@ -2398,7 +2398,7 @@ plt.savefig("TSLASentimentchart.png")
 
 
 ```python
-#Good chart
+
 ax = tweet_stock_merged.plot(x="date", y="Close", legend=False, marker="x")
 ax2 = ax.twinx()
 tweet_stock_merged.plot(x="date", y="ElonMusk_compound", ax=ax2, legend=False, color="r", marker="o", figsize=(10,7))
@@ -2419,7 +2419,7 @@ plt.savefig("ElonMuskSentimentchart.png")
 
 
 ```python
-#Good chart
+
 ax = tweet_stock_merged.plot(x="date", y="PS Ratio", legend=False, marker="x")
 ax2 = ax.twinx()
 tweet_stock_merged.plot(x="date", y="TSLA_compound", ax=ax2, legend=False, color="r", marker="o", figsize=(10,7))
@@ -2440,7 +2440,7 @@ plt.savefig("TSLA_PSRatiochart.png")
 
 
 ```python
-#Good chart
+
 ax = tweet_stock_merged.plot(x="date", y="PS Ratio", legend=False, marker="x")
 ax2 = ax.twinx()
 tweet_stock_merged.plot(x="date", y="ElonMusk_compound", ax=ax2, legend=False, color="r", marker="o", figsize=(10,7))
