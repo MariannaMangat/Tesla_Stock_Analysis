@@ -290,8 +290,6 @@ tesla_df.dtypes
 
 ### *** Financial Graphs ***
 
-## Reuben's code
-
 
 ```python
 # Plot - Operating Income vs Closing Prices
@@ -380,9 +378,6 @@ plt.savefig("Cash Generated vs Stock Prices.png")
 ![png](Graphs/output_21_1.png)
 
 
-## Andy's code
-
-
 ```python
 # plot - Stock Price vs PS ratio
 
@@ -461,10 +456,6 @@ plt.savefig("Operating Income vs Price-To_Sale Ratio.png")
 
 
 ### >>> Twitter section >>>
-
-## Carla's code
-
-
 
 
 ```python
